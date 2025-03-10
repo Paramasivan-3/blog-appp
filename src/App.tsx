@@ -14,14 +14,14 @@ const App: React.FC = () => {
   const [newContent, setNewContent] = useState<string>('');
 
   const fetchPosts = async () => {
-    const response = await fetch('http://localhost:5000/posts');
+    const response = await fetch('https://blog-backend-z4wp.onrender.com/posts');
     const data = await response.json();
     setPosts(data);
   };
 
   const addPost = async () => {
     if (newTitle.trim() === '' || newContent.trim() === '') return;
-    await fetch('http://localhost:5000/posts', {
+    await fetch('https://blog-backend-z4wp.onrender.com/posts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title: newTitle, content: newContent }),
@@ -32,7 +32,7 @@ const App: React.FC = () => {
   };
 
   const deletePost = async (id: number) => {
-    await fetch(`http://localhost:5000/posts/${id}`, { method: 'DELETE' });
+    await fetch(`https://blog-backend-z4wp.onrender.com/posts/${id}`, { method: 'DELETE' });
     fetchPosts();
   };
 
